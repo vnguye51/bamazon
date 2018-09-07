@@ -39,9 +39,9 @@ function inquiry(){
 }
 
 function viewSales(){
-    var query = `SELECT products.department_name,SUM(product_sales) AS product_sales,departments.over_head_costs,SUM(product_sales)-departments.over_head_costs AS total_profit
-        FROM products
-        LEFT JOIN departments ON departments.department_name=products.department_name
+    var query = `SELECT departments.department_name,IFNULL(SUM(product_sales),0) AS product_sales,departments.over_head_costs,IFNULL(SUM(product_sales)-departments.over_head_costs,-departments.over_head_costs) AS total_profit
+        FROM departments
+        LEFT JOIN products ON departments.department_name = products.department_name
         GROUP BY department_name
         `
     connection.query(query,function(err, res){

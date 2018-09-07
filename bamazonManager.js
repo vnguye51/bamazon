@@ -97,7 +97,6 @@ function addExisting(){
             }
             var stock = res[0].stock_quantity
             stock += +response.add 
-            console.log(stock)
             connection.query('UPDATE products SET ? WHERE ?',
                 [
                     {

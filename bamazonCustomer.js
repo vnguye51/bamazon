@@ -85,7 +85,6 @@ function logTransaction(response){
         }
         else{
             stock -= response.request
-            console.log(stock)
             connection.query('UPDATE products SET ? WHERE ?',
                 [
                     {
